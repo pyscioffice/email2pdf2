@@ -1,5 +1,7 @@
 import logging
 import sys
+import os
+from sys import platform as _platform
 from email2pdf.email2pdf import call_main
 
 
