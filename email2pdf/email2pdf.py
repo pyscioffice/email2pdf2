@@ -415,7 +415,7 @@ def output_body_pdf(input_email, payload, output_file_name):
     assert output == b''
 
     stripped_error = str(error, 'utf-8')
-    if os.environ['XDG_SESSION_TYPE'] == 'wayland':
+    if 'XDG_SESSION_TYPE' in os.environ.keys() and os.environ['XDG_SESSION_TYPE'] == 'wayland':
         w_err = r'Warning: Ignoring XDG_SESSION_TYPE=wayland on Gnome. Use QT_QPA_PLATFORM=wayland to run on ' \
                 r'Wayland anyway.'
         global WKHTMLTOPDF_ERRORS_IGNORE
