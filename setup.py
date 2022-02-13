@@ -1,9 +1,10 @@
-from setuptools import setup
+from setuptools import setup, find_packages
+
 
 setup(
     name='email2pdf',
     version='',
-    packages=['tests', 'tests.Direct', 'tests.Subprocess'],
+    packages=find_packages(exclude=["*tests*"]),
     url='https://github.com/andrewferrier/email2pdf',
     license='MIT',
     author='Andrew Ferrier',
@@ -16,4 +17,9 @@ setup(
         'python-magic',
         'reportlab',
     ],
+    entry_points={
+        "console_scripts": [
+            'email2pdf=email2pdf.__main__:main'
+        ]
+    }
 )
