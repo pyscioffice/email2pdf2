@@ -2,22 +2,15 @@
 
 This document talks about hacking/developing on email2pdf2 - for more
 information on email2pdf2 and how to use it, please see
-[README.md](https://github.com/pyscioffice/email2pdf2/blob/master/README.md).
+[README.md](https://github.com/pyscioffice/email2pdf2/blob/main/README.md).
 
 In general, [bug reports/enhancement
 requests](https://github.com/pyscioffice/email2pdf2/issues) as well as [pull
 requests](https://github.com/pyscioffice/email2pdf2/pulls) are welcome;
 please note the [license
-conditions](https://github.com/pyscioffice/email2pdf2/blob/master/LICENSE.txt).
+conditions](https://github.com/pyscioffice/email2pdf2/blob/main/LICENSE.txt).
 If you are trying to report an issue, please try running email2pdf2 with the
 `-vv` option to maximise the debugging output first.
-
-## Building & Packaging
-
-All the supplied build and packaging is based on a
-[Makefile](https://github.com/pyscioffice/email2pdf2/blob/master/Makefile).
-You'll need `make` if you don't have it (`sudo apt-get install make` on
-Ubuntu/Debian, `brew install make` on OS X).
 
 ## Design & Coding Principles
 
@@ -43,7 +36,7 @@ target in the Makefile - run `make coverage`. You'll need to have the
 to run them.
 
 In addition to the standard dependencies from the [standard install
-documentation](https://github.com/pyscioffice/email2pdf2/blob/master/README.md),
+documentation](https://github.com/pyscioffice/email2pdf2/blob/main/README.md),
 there are some additional dependencies which will be needed to make the tests
 work:
 

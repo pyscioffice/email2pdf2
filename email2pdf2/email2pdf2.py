@@ -94,7 +94,7 @@ def main(argv, syslog_handler, syserr_handler):
 
     if not shutil.which(WKHTMLTOPDF_EXTERNAL_COMMAND):
         raise FatalException("email2pdf2 requires wkhtmltopdf to be installed - please see "
-                             "https://github.com/pyscioffice/email2pdf2/blob/master/README.md#installing-dependencies "
+                             "https://github.com/pyscioffice/email2pdf2/blob/main/README.md#installing-dependencies "
                              "for more information.")
 
     output_directory = os.path.normpath(args.output_directory)

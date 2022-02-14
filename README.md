@@ -16,9 +16,9 @@ PDF. Type `email2pdf2 --help` for more information on usage and options
 available.
 
 For more information on hacking/developing email2pdf2, please see
-[HACKING.md](https://github.com/pyscioffice/email2pdf2/blob/master/HACKING.md).
+[HACKING.md](https://github.com/pyscioffice/email2pdf2/blob/main/HACKING.md).
 Note that use is subject to the [license
-conditions](https://github.com/pyscioffice/email2pdf2/blob/master/LICENSE.txt).
+conditions](https://github.com/pyscioffice/email2pdf2/blob/main/LICENSE.txt).
 
 ## Installing Dependencies
 
@@ -66,7 +66,7 @@ instructions here are split out by platform:
 getmail is not strictly a dependency, but when it is combined with email2pdf2,
 it can be used to retrieve new emails from a remote IMAP server and
 automatically convert them to PDFs locally. The
-[`getmailrc.sample`](https://github.com/pyscioffice/email2pdf2/blob/master/getmailrc.sample)
+[`getmailrc.sample`](https://github.com/pyscioffice/email2pdf2/blob/main/getmailrc.sample)
 file in the repository can be used as a starting point for your own getmailrc
 to do this. Note that the sample will need editing, of course - see the
 getmail documentation for more information on that. Also, it is configured by

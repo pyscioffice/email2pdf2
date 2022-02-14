@@ -35,8 +35,8 @@ class Email2PDFTestCase(unittest.TestCase):
 
     NONEXIST_IMG = 'http://www.andrewferrier.com/nonexist.jpg'
     NONEXIST_IMG_BLACKLIST = 'http://www.emltrk.com/nonexist.jpg'
-    EXIST_IMG = 'https://raw.githubusercontent.com/pyscioffice/email2pdf2/master/tests/basi2c16.png'
-    EXIST_IMG_UPPERCASE = 'https://raw.githubusercontent.com/pyscioffice/email2pdf2/master/tests/UPPERCASE.png'
+    EXIST_IMG = 'https://raw.githubusercontent.com/pyscioffice/email2pdf2/main/tests/basi2c16.png'
+    EXIST_IMG_UPPERCASE = 'https://raw.githubusercontent.com/pyscioffice/email2pdf2/main/tests/UPPERCASE.png'
     COMMAND = 'email2pdf2'
 
     DEFAULT_FROM = "from@example.org"
