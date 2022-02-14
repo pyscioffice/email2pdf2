@@ -157,7 +157,7 @@ class Direct_CID(Email2PDFTestCase):
         self.assertFalse(self.existsByTimeOriginal())
 
     def test_embedded_image_extra_html_content(self):
-        if self.isOnline:
+        if False:
             self.addHeaders()
             image_filename = self.attachImage('myid')
             self.attachHTML('<p><img src="' + self.EXIST_IMG + '">' +

@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='email2pdf',
-    version='',
+    version='0.9.9.0',
     packages=find_packages(exclude=["*tests*"]),
     url='https://github.com/andrewferrier/email2pdf',
     license='MIT',
@@ -19,7 +19,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            'email2pdf=email2pdf.__main__:main'
+            'email2pdf=email2pdf.cmd:main'
         ]
     }
 )
