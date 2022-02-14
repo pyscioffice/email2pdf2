@@ -12,3 +12,4 @@ dependencies:
 - wkhtmltopdf
 - reportlab
 - pdfminer.six
+- freezegun
