@@ -399,7 +399,7 @@ class Email2PDFTestCase(unittest.TestCase):
     @classmethod
     def _get_original_script_path(cls):
         module_path = inspect.getfile(inspect.currentframe())
-        module_path = os.path.join(os.path.dirname(os.path.dirname(module_path)), 'email2pdf', '__main__.py')
+        module_path = os.path.join(os.path.dirname(os.path.dirname(module_path)), '__main__.py')
 
         return module_path
 
