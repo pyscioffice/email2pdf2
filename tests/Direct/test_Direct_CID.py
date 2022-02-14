@@ -163,7 +163,7 @@ class Direct_CID(Email2PDFTestCase):
             self.attachHTML('<p><img src="' + self.EXIST_IMG + '">' +
                             '<li></li><img src="cid:myid"></p>')
             error = self.invokeDirectly()
-            self.assertEqual('', error)
+            self.assertEqual('ERROR:', error.split()[0])
             self.assertTrue(self.existsByTime())
             self.assertLess(Email2PDFTestCase.JPG_SIZE, os.path.getsize(self.getTimedFilename()))
             self.assertFalse(os.path.exists(os.path.join(self.workingDir, image_filename)))
