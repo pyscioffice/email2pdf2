@@ -12,6 +12,7 @@ setup(
     description='email2pdf2 is a Python script to convert emails to PDF.',
     install_requires=[
         'beautifulsoup4>=4.6.3',
+        'chardet',
         'html5lib',
         'lxml',
         'pypdf3',
