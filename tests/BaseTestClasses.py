@@ -399,14 +399,14 @@ class Email2PDFTestCase(unittest.TestCase):
     @classmethod
     def _get_original_script_path(cls):
         module_path = inspect.getfile(inspect.currentframe())
-        module_path = os.path.join(os.path.dirname(os.path.dirname(module_path)), '__main__.py')
+        module_path = os.path.join(os.path.dirname(os.path.dirname(module_path)), 'email2pdf', '__main__.py')
 
         return module_path
 
     @classmethod
     def _get_email2pdf_object(cls, module_path):
         import importlib.machinery
-        loader = importlib.machinery.SourceFileLoader('email2pdf', module_path)
+        loader = importlib.machinery.SourceFileLoader("__main__", module_path)
         return loader.load_module()
 
     @classmethod
