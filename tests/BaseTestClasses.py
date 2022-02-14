@@ -1,4 +1,4 @@
-from PyPDF2 import PdfFileReader
+from PyPDF3 import PdfFileReader
 from datetime import datetime
 from datetime import timedelta
 from email import encoders
