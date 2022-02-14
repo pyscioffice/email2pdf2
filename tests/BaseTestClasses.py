@@ -35,9 +35,9 @@ class Email2PDFTestCase(unittest.TestCase):
 
     NONEXIST_IMG = 'http://www.andrewferrier.com/nonexist.jpg'
     NONEXIST_IMG_BLACKLIST = 'http://www.emltrk.com/nonexist.jpg'
-    EXIST_IMG = 'https://raw.githubusercontent.com/andrewferrier/email2pdf/master/tests/basi2c16.png'
-    EXIST_IMG_UPPERCASE = 'https://raw.githubusercontent.com/andrewferrier/email2pdf/master/tests/UPPERCASE.png'
-    COMMAND = 'email2pdf'
+    EXIST_IMG = 'https://raw.githubusercontent.com/pyscioffice/email2pdf2/master/tests/basi2c16.png'
+    EXIST_IMG_UPPERCASE = 'https://raw.githubusercontent.com/pyscioffice/email2pdf2/master/tests/UPPERCASE.png'
+    COMMAND = 'email2pdf2'
 
     DEFAULT_FROM = "from@example.org"
     DEFAULT_TO = "to@example.org"
@@ -210,7 +210,7 @@ class Email2PDFTestCase(unittest.TestCase):
 
             stream = io.StringIO()
             stream_handler = logging.StreamHandler(stream)
-            log = logging.getLogger('email2pdf')
+            log = logging.getLogger('email2pdf2')
             log.propagate = False
             log.setLevel(logging.DEBUG)
             log.addHandler(stream_handler)
@@ -399,14 +399,14 @@ class Email2PDFTestCase(unittest.TestCase):
     @classmethod
     def _get_original_script_path(cls):
         module_path = inspect.getfile(inspect.currentframe())
-        module_path = os.path.join(os.path.dirname(os.path.dirname(module_path)), 'email2pdf', 'email2pdf.py')
+        module_path = os.path.join(os.path.dirname(os.path.dirname(module_path)), 'email2pdf2', 'email2pdf2.py')
 
         return module_path
 
     @classmethod
     def _get_email2pdf_object(cls, module_path):
         import importlib.machinery
-        loader = importlib.machinery.SourceFileLoader("email2pdf", module_path)
+        loader = importlib.machinery.SourceFileLoader("email2pdf2", module_path)
         return loader.load_module()
 
     @classmethod

@@ -1,4 +1,4 @@
-from email2pdf.cmd import main
+from email2pdf2.cmd import main
 
 
 if __name__ == "__main__":

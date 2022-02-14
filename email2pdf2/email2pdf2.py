@@ -62,7 +62,7 @@ WKHTMLTOPDF_EXTERNAL_COMMAND = 'wkhtmltopdf'
 
 
 def main(argv, syslog_handler, syserr_handler):
-    logger = logging.getLogger('email2pdf')
+    logger = logging.getLogger('email2pdf2')
     warning_count_filter = WarningCountFilter()
     logger.addFilter(warning_count_filter)
 
@@ -93,8 +93,8 @@ def main(argv, syslog_handler, syserr_handler):
     logger.info("Options used are: " + str(args))
 
     if not shutil.which(WKHTMLTOPDF_EXTERNAL_COMMAND):
-        raise FatalException("email2pdf requires wkhtmltopdf to be installed - please see "
-                             "https://github.com/andrewferrier/email2pdf/blob/master/README.md#installing-dependencies "
+        raise FatalException("email2pdf2 requires wkhtmltopdf to be installed - please see "
+                             "https://github.com/pyscioffice/email2pdf2/blob/master/README.md#installing-dependencies "
                              "for more information.")
 
     output_directory = os.path.normpath(args.output_directory)
@@ -160,7 +160,7 @@ def handle_args(argv):
             raise FatalException(message)
 
     parser = ArgumentParser(description="Converts emails to PDFs. "
-                            "See https://github.com/andrewferrier/email2pdf for more information.", add_help=False)
+                            "See https://github.com/pyscioffice/email2pdf2 for more information.", add_help=False)
 
     parser.add_argument("-i", "--input-file", default="-",
                         help="File containing input email you wish to read in raw form "
@@ -177,7 +177,7 @@ def handle_args(argv):
     parser.add_argument("-o", "--output-file",
                         help="Output file you wish to print the body of the email to as PDF. Should "
                         "include the complete path, otherwise it defaults to the current directory. If "
-                        "this option is not specified, email2pdf picks a date & time-based filename and puts "
+                        "this option is not specified, email2pdf2 picks a date & time-based filename and puts "
                         "the file in the directory specified by --output-directory.")
 
     parser.add_argument("-d", "--output-directory", default=os.getcwd(),
@@ -207,23 +207,23 @@ def handle_args(argv):
     parser.add_argument("--ignore-floating-attachments", action="store_true",
                         help="Emails sometimes contain attachments that don't have a filename and aren't "
                         "embedded in the main HTML body of the email using a Content-ID either. By "
-                        "default, email2pdf will detach these and use their Content-ID as a filename, "
+                        "default, email2pdf2 will detach these and use their Content-ID as a filename, "
                         "or autogenerate a filename. If this option is specified, it will instead ignore "
                         "them.")
 
     parser.add_argument("--enforce-syslog", action="store_true",
-                        help="By default email2pdf will use syslog if available and just log to stderr "
-                        "if not. If this option is specified, email2pdf will exit with an error if the syslog socket "
+                        help="By default email2pdf2 will use syslog if available and just log to stderr "
+                        "if not. If this option is specified, email2pdf2 will exit with an error if the syslog socket "
                         "can not be located.")
 
     verbose_options = parser.add_mutually_exclusive_group()
 
     verbose_options.add_argument("--mostly-hide-warnings", action="store_true",
-                                 help="By default email2pdf will output warnings about handling emails to stderr and "
+                                 help="By default email2pdf2 will output warnings about handling emails to stderr and "
                                  "exit with a non-zero return code if any are encountered, *as well as* outputting a "
                                  "summary file entitled <output_PDF_name>_warnings_and_errors.txt and the original "
                                  "email as <output_PDF_name>_original.eml. Specifying this option disables the first "
-                                 "two, so only the additional files are produced - this makes it easier to use email2pdf "
+                                 "two, so only the additional files are produced - this makes it easier to use email2pdf2 "
                                  "if it is run on a schedule, as warnings won't cause the same email to be repeatedly "
                                  "retried.")
 
@@ -232,7 +232,7 @@ def handle_args(argv):
                                  "syslog, as well as output to the console. Using this twice makes it doubly verbose.")
 
     parser.add_argument('-h', '--help', action='store_true',
-                        help="Show some basic help information about how to use email2pdf.")
+                        help="Show some basic help information about how to use email2pdf2.")
 
     args = parser.parse_args(argv[1:])
 
@@ -246,7 +246,7 @@ def handle_args(argv):
 
 
 def get_input_data(args):
-    logger = logging.getLogger("email2pdf")
+    logger = logging.getLogger("email2pdf2")
 
     logger.debug("System preferred encoding is: " + locale.getpreferredencoding())
     logger.debug("System encoding is: " + str(locale.getlocale()))
@@ -305,7 +305,7 @@ def get_modified_output_file_name(output_file_name, append):
 
 
 def handle_message_body(args, input_email):
-    logger = logging.getLogger("email2pdf")
+    logger = logging.getLogger("email2pdf2")
 
     cid_parts_used = set()
 
@@ -327,7 +327,7 @@ def handle_message_body(args, input_email):
 
 
 def handle_plain_message_body(part):
-    logger = logging.getLogger("email2pdf")
+    logger = logging.getLogger("email2pdf2")
 
     if part['Content-Transfer-Encoding'] == '8bit':
         payload = part.get_payload(decode=False)
@@ -360,7 +360,7 @@ def handle_plain_message_body(part):
 
 
 def handle_html_message_body(input_email, part):
-    logger = logging.getLogger("email2pdf")
+    logger = logging.getLogger("email2pdf2")
 
     cid_parts_used = set()
 
@@ -406,7 +406,7 @@ def handle_html_message_body(input_email, part):
 
 
 def output_body_pdf(input_email, payload, output_file_name):
-    logger = logging.getLogger("email2pdf")
+    logger = logging.getLogger("email2pdf2")
 
     wkh2p_process = Popen([WKHTMLTOPDF_EXTERNAL_COMMAND, '-q', '--load-error-handling', 'ignore',
                            '--load-media-error-handling', 'ignore', '--encoding', 'utf-8', '-',
@@ -443,13 +443,13 @@ def output_body_pdf(input_email, payload, output_file_name):
         if HEADER_MAPPING[key] in input_email:
             add_metadata_obj[key] = get_utf8_header(input_email[HEADER_MAPPING[key]])
 
-    add_metadata_obj['Producer'] = 'email2pdf'
+    add_metadata_obj['Producer'] = 'email2pdf2'
 
     add_update_pdf_metadata(output_file_name, add_metadata_obj)
 
 
 def remove_invalid_urls(payload):
-    logger = logging.getLogger("email2pdf")
+    logger = logging.getLogger("email2pdf2")
 
     soup = BeautifulSoup(payload, "html5lib")
 
@@ -497,7 +497,7 @@ def can_url_fetch(src):
 
 
 def handle_attachments(input_email, output_directory, add_prefix_date, ignore_floating_attachments, parts_to_ignore):
-    logger = logging.getLogger("email2pdf")
+    logger = logging.getLogger("email2pdf2")
 
     parts = find_all_attachments(input_email, parts_to_ignore)
     logger.debug("Attachments found by handle_attachments: " + str(len(parts)))
@@ -561,7 +561,7 @@ def add_update_pdf_metadata(filename, update_dictionary):
             assert full_update_dictionary[key] is not None
             info_dict.update({NameObject(key): createStringObject(full_update_dictionary[key])})
 
-        os_file_out, temp_file_name = tempfile.mkstemp(prefix="email2pdf_add_update_pdf_metadata", suffix=".pdf")
+        os_file_out, temp_file_name = tempfile.mkstemp(prefix="email2pdf2_add_update_pdf_metadata", suffix=".pdf")
         # Immediately close the file as created to work around issue on
         # Windows where file cannot be opened twice.
         os.close(os_file_out)
@@ -573,7 +573,7 @@ def add_update_pdf_metadata(filename, update_dictionary):
 
 
 def extract_part_filename(part):
-    logger = logging.getLogger("email2pdf")
+    logger = logging.getLogger("email2pdf2")
     filename = part.get_filename()
     if filename is not None:
         logger.debug("Pre-decoded filename: " + filename)
@@ -707,7 +707,7 @@ def get_utf8_header(header):
     # work, as it inserts a space between certain elements in the string
     # that's not warranted/correct.
 
-    logger = logging.getLogger("email2pdf")
+    logger = logging.getLogger("email2pdf2")
 
     decoded_header = decode_header(header)
     logger.debug("Decoded header: " + str(decoded_header))
@@ -742,7 +742,7 @@ class FatalException(Exception):
 
 def call_main(argv, syslog_handler, syserr_handler):
     # pylint: disable=bare-except
-    logger = logging.getLogger("email2pdf")
+    logger = logging.getLogger("email2pdf2")
 
     try:
         (warning_pending, mostly_hide_warnings) = main(argv, syslog_handler, syserr_handler)

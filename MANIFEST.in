@@ -1,4 +1,3 @@
-include email2pdf
-include *.py
-include *.md
-include .travis.yml
+include LICENSE
+include versioneer.py
+include email2pdf2/_version.py

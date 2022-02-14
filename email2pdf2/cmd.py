@@ -2,11 +2,11 @@ import logging
 import sys
 import os
 from sys import platform as _platform
-from email2pdf.email2pdf import call_main
+from email2pdf2.email2pdf2 import call_main
 
 
 def setup_logger():
-    logger_setup = logging.getLogger("email2pdf")
+    logger_setup = logging.getLogger("email2pdf2")
     logger_setup.propagate = False
     logger_setup.setLevel(logging.DEBUG)
 
