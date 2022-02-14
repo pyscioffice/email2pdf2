@@ -3,7 +3,7 @@ import versioneer
 
 
 setup(
-    name='email2pdf',
+    name='email2pdf2',
     version=versioneer.get_version(),
     packages=find_packages(exclude=["*tests*"]),
     url='https://github.com/pyscioffice/email2pdf2',
