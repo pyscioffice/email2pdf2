@@ -14,7 +14,7 @@ setup(
         'beautifulsoup4>=4.6.3',
         'html5lib',
         'lxml',
-        'pypdf2',
+        'pypdf3',
         'python-magic',
         'reportlab',
     ],
