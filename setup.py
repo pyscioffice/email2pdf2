@@ -19,7 +19,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            'email2pdf=email2pdf.__main__:main'
+            'email2pdf=email2pdf.cmd:main'
         ]
     }
 )
