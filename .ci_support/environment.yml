@@ -7,7 +7,7 @@ dependencies:
 - beautifulsoup4
 - python-magic
 - chardet
-- pypdf2
+- pypdf3
 - html5lib
 - wkhtmltopdf
 - reportlab

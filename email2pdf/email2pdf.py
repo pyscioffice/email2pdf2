@@ -27,8 +27,8 @@ import tempfile
 import textwrap
 import traceback
 
-from PyPDF2 import PdfFileReader, PdfFileWriter
-from PyPDF2.generic import NameObject, createStringObject
+from PyPDF3 import PdfFileReader, PdfFileWriter
+from PyPDF3.generic import NameObject, createStringObject
 from bs4 import BeautifulSoup
 import magic
 
