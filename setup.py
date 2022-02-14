@@ -1,14 +1,15 @@
 from setuptools import setup, find_packages
+import versioneer
 
 
 setup(
     name='email2pdf',
-    version='0.9.9.0',
+    version=versioneer.get_version(),
     packages=find_packages(exclude=["*tests*"]),
-    url='https://github.com/andrewferrier/email2pdf',
+    url='https://github.com/pyscioffice/email2pdf2',
     license='MIT',
     author='Andrew Ferrier',
-    description='email2pdf is a Python script to convert emails to PDF.',
+    description='email2pdf2 is a Python script to convert emails to PDF.',
     install_requires=[
         'beautifulsoup4>=4.6.3',
         'html5lib',
@@ -19,7 +20,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            'email2pdf=email2pdf.cmd:main'
+            'email2pdf2=email2pdf2.cmd:main'
         ]
     }
 )

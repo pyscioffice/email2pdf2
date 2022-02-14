@@ -163,7 +163,7 @@ class Direct_Errors(BaseTestClasses.Email2PDFTestCase):
 
     def test_missing_wkhtmltopdf(self):
         with unittest.mock.patch.dict(os.environ, {'PATH': ''}):
-            with self.assertRaisesRegex(Exception, "(?i)email2pdf requires wkhtmltopdf"):
+            with self.assertRaisesRegex(Exception, "(?i)email2pdf2 requires wkhtmltopdf"):
                 self.invokeDirectly()
             self.assertFalse(self.existsByTime())
             self.assertFalse(self.existsByTimeWarning())
