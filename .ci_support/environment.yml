@@ -11,4 +11,4 @@ dependencies:
 - html5lib
 - wkhtmltopdf
 - reportlab
-- pdfminer
+- pdfminer.six
