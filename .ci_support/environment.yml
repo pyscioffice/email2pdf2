@@ -1,0 +1,12 @@
+channels:
+- conda-forge
+dependencies:
+- python
+- coverage
+- coveralls
+- beautifulsoup4
+- python-magic
+- chardet
+- pypdf2
+- html5lib
+- wkhtmltopdf
