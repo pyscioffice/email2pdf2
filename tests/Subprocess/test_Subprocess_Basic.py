@@ -116,7 +116,7 @@ class TestBasic(Email2PDFTestCase):
         self.assertEqual(0, rc)
         self.assertTrue(self.existsByTime())
         self.assertEqual('', error)
-        self.assertRegex(self.getPDFText(self.getTimedFilename()), "ɯɐɹƃoɹd ɟpdᄅlᴉɐɯǝ ǝɥʇ ɟo ʇsǝʇ ɐ sᴉ sᴉɥʇ ollǝH")
+        self.assertRegex(self.getPDFText(self.getTimedFilename()), "ɯɐɹƃoɹd ɟpdᄅlᴉɐɯǝ ǝɥʇ ɟo ʇsǝʇ ɐ sᴉ sᴉɥʇ ollǝH\n\n\x0c")
         self.assertFalse(self.existsByTimeWarning())
         self.assertFalse(self.existsByTimeOriginal())
 
