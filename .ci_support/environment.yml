@@ -10,3 +10,4 @@ dependencies:
 - pypdf2
 - html5lib
 - wkhtmltopdf
+- reportlab
