@@ -10,9 +10,7 @@ setup:  ## Setups environment
 
 .PHONY: test
 test:  ## Runs test
-	./bin/python bin/activate_this.py
-	python -m unittest discover tests
-	deactivate
+	. ./bin/activate && python -m unittest discover tests
 
 .PHONY: cleanall
 cleanall:  ## Cleans all installed files
