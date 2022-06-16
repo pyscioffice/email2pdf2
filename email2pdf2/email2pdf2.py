@@ -309,7 +309,7 @@ def get_modified_output_file_name(output_file_name, append):
     return partial_name
 
 
-def handle_message_body_(args, input_email):
+def handle_message_body(args, input_email):
     logger = logging.getLogger("email2pdf2")
 
     cid_parts_used = set()
