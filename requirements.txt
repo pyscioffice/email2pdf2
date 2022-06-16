@@ -8,3 +8,4 @@ pdfminer.six
 pypdf3
 python-magic
 reportlab
+ipdb
