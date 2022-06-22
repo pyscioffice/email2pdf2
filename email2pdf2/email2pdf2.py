@@ -663,7 +663,7 @@ def find_all_attachments(message, parts_to_ignore):
 
     parties = list(message.walk())
     for i, part in enumerate(parties):
-        print("{}: {}, {}".format(i, part.get_content_type(), part.get_content_disposition()))
+        # print("{}: {}, {}".format(i, part.get_content_type(), part.get_content_disposition()))
         if part not in parts_to_ignore:
             if part.get_content_type() == "message/rfc822" and part.get_content_disposition():
                 parts.add(part)

@@ -1,3 +1,5 @@
+from email.mime.message import MIMEMessage
+
 from PyPDF3 import PdfFileReader
 from datetime import datetime
 from datetime import timedelta
@@ -351,6 +353,12 @@ class Email2PDFTestCase(unittest.TestCase):
         else:
             part.add_header('Content-Disposition', 'inline')
 
+        self.msg.attach(part)
+
+    def attachHtmlMessage(self, html, subtype='rfc822', policy=None):
+        msg = MIMEText(html, 'html', policy=policy)
+        part = MIMEMessage(msg, _subtype=subtype, policy=policy)
+        part.add_header('Content-Disposition', 'attachment')
         self.msg.attach(part)
 
     def assertIsJPG(self, filename):
