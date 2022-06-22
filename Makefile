@@ -6,7 +6,7 @@ setup:  ## Setups environment
 	virtualenv .
 	./bin/pip install --upgrade pip
 	./bin/pip install -r requirements.txt
-	./bin/pip install --no-deps .
+	./bin/pip install --no-deps -e .
 
 .PHONY: test
 test:  ## Runs test
