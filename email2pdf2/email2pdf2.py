@@ -322,8 +322,6 @@ def handle_message_body(args, input_email):
         (payload, cid_parts_used) = handle_html_message_body(input_email, part)
     elif part.get_content_type() == 'text/plain':
         payload = handle_plain_message_body(part)
-    elif part.get_content_type() == 'text/plain':
-        payload = handle_plain_message_body(part)
     else:
         # raise FatalException("Body part not html or plain but '{}'; aborting.".format(part.get_content_type()))
         subpart = find_part_by_content_type(part, "text/html")
