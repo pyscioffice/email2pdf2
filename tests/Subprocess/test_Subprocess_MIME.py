@@ -141,7 +141,7 @@ class TestMIME(Email2PDFTestCase):
         self.assertFalse(self.existsByTimeWarning())
         self.assertFalse(self.existsByTimeOriginal())
 
-    def test_plainandattachedhtml(self):
+    def test_plain_and_attached_html(self):
         self.addHeaders()
         self.attachText("Some basic textual content")
         self.attachHtmlMessage("<p>Attached HTML content</p>")
