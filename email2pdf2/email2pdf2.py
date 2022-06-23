@@ -311,7 +311,7 @@ def handle_message_body(args, input_email):
     logger = logging.getLogger("email2pdf2")
     cid_parts_used = set()
 
-    part = input_email.get_body()  # from email.message.EmailMessage
+    part = input_email.get_body(preferencelist=('html', 'plain'))  # from email.message.EmailMessage
     if part is None:
         if not args.body:
             logger.debug("No body parts found, but using --no-body; proceeding.")
@@ -322,8 +322,24 @@ def handle_message_body(args, input_email):
         (payload, cid_parts_used) = handle_html_message_body(input_email, part)
     elif part.get_content_type() == 'text/plain':
         payload = handle_plain_message_body(part)
+    elif part.get_content_type() == 'text/plain':
+        payload = handle_plain_message_body(part)
     else:
-        raise FatalException("Body part not html or plain but '{}'; aborting.".format(part.get_content_type()))
+        # raise FatalException("Body part not html or plain but '{}'; aborting.".format(part.get_content_type()))
+        subpart = find_part_by_content_type(part, "text/html")
+        if subpart is None:
+            subpart = find_part_by_content_type(part, "text/plain")
+            if subpart is None:
+                if not args.body:
+                    logger.debug("No body parts found, but using --no-body; proceeding.")
+                    return (None, cid_parts_used)
+                else:
+                    raise FatalException("No body parts found; aborting.")
+            else:
+                payload = handle_plain_message_body(subpart)
+        else:
+            (payload, cid_parts_used) = handle_html_message_body(input_email, subpart)  # input_email or part ?
+
     return payload, cid_parts_used
 
 
