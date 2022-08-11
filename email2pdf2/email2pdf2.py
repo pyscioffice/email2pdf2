@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
 from datetime import datetime
+from email import generator
 from email.header import decode_header
+from email.policy import default
 from itertools import chain
 from subprocess import Popen, PIPE
 from sys import platform as _platform
@@ -265,7 +267,8 @@ def get_input_data(args):
 
 
 def get_input_email(input_data):
-    input_email = email.message_from_string(input_data)
+    # Use default policy (returns email.message.EmailMessage), no more compat32 (returns email.message.Message)
+    input_email = email.message_from_string(input_data, policy=default)
 
     defects = input_email.defects
     for part in input_email.walk():
@@ -306,24 +309,36 @@ def get_modified_output_file_name(output_file_name, append):
 
 def handle_message_body(args, input_email):
     logger = logging.getLogger("email2pdf2")
-
     cid_parts_used = set()
 
-    part = find_part_by_content_type(input_email, "text/html")
+    part = input_email.get_body(preferencelist=('html', 'plain'))  # from email.message.EmailMessage
     if part is None:
-        part = find_part_by_content_type(input_email, "text/plain")
-        if part is None:
-            if not args.body:
-                logger.debug("No body parts found, but using --no-body; proceeding.")
-                return (None, cid_parts_used)
-            else:
-                raise FatalException("No body parts found; aborting.")
+        if not args.body:
+            logger.debug("No body parts found, but using --no-body; proceeding.")
+            return None, cid_parts_used
         else:
-            payload = handle_plain_message_body(part)
-    else:
+            raise FatalException("No body parts found; aborting.")
+    elif part.get_content_type() == 'text/html':
         (payload, cid_parts_used) = handle_html_message_body(input_email, part)
+    elif part.get_content_type() == 'text/plain':
+        payload = handle_plain_message_body(part)
+    else:
+        # raise FatalException("Body part not html or plain but '{}'; aborting.".format(part.get_content_type()))
+        subpart = find_part_by_content_type(part, "text/html")
+        if subpart is None:
+            subpart = find_part_by_content_type(part, "text/plain")
+            if subpart is None:
+                if not args.body:
+                    logger.debug("No body parts found, but using --no-body; proceeding.")
+                    return (None, cid_parts_used)
+                else:
+                    raise FatalException("No body parts found; aborting.")
+            else:
+                payload = handle_plain_message_body(subpart)
+        else:
+            (payload, cid_parts_used) = handle_html_message_body(input_email, subpart)  # input_email or part ?
 
-    return (payload, cid_parts_used)
+    return payload, cid_parts_used
 
 
 def handle_plain_message_body(part):

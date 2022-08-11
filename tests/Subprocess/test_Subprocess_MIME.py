@@ -141,6 +141,18 @@ class TestMIME(Email2PDFTestCase):
         self.assertFalse(self.existsByTimeWarning())
         self.assertFalse(self.existsByTimeOriginal())
 
+    def test_plain_and_attached_html(self):
+        self.addHeaders()
+        self.attachText("Some basic textual content")
+        self.attachHtmlMessage("<p>Attached HTML content</p>")
+        (rc, output, error) = self.invokeAsSubprocess()
+        self.assertEqual(0, rc)
+        self.assertEqual('', error)
+        self.assertTrue(self.existsByTime())
+        self.assertRegex(self.getPDFText(self.getTimedFilename()), "Some\sbasic\stextual\scontent")
+        self.assertFalse(self.existsByTimeWarning())
+        self.assertFalse(self.existsByTimeOriginal())
+
     def test_wrong_charset_html(self):
         self.addHeaders()
         broken_body = b"<p>Something with raw accents: \xe9</p>"

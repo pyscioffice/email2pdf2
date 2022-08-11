@@ -1,6 +1,12 @@
 beautifulsoup4>=4.6.3
+chardet
+coverage
+coveralls
+freezegun
 html5lib
 lxml
-pypdf2
+pdfminer.six
+pypdf3
 python-magic
 reportlab
+ipdb
