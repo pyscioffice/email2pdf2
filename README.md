@@ -5,10 +5,10 @@
 email2pdf2 is a Python script to convert emails to PDF from the command-line.
 It is not interactive (it doesn't run from a browser or have a GUI), but is
 intended to be run as a [mail delivery
-agent](http://en.wikipedia.org/wiki/Mail_delivery_agent) - it won't retrieve
+agent](https://en.wikipedia.org/wiki/Mail_delivery_agent) - it won't retrieve
 emails for you, but it will take them from standard input as an MDA will and
 'deliver' them to PDF files. It is well-placed to use together with
-[getmail](http://pyropus.ca/software/getmail/), perhaps run on a schedule
+[getmail](https://pyropus.ca/software/getmail/), perhaps run on a schedule
 using [cron](https://en.wikipedia.org/wiki/Cron) or similar. You can also just
 use it as a standalone utility to convert a raw email (normally an
 [.eml](https://en.wikipedia.org/wiki/Email#Filename_extensions) file) to a
@@ -27,12 +27,12 @@ instructions here are split out by platform:
 
 ### Debian/Ubuntu
 
-* [wkhtmltopdf](http://wkhtmltopdf.org/) - Install the `.deb` from
+* [wkhtmltopdf](https://wkhtmltopdf.org/) - Install the `.deb` from
   http://wkhtmltopdf.org/ rather than using apt-get to minimise the
   dependencies you need to install (in particular, to avoid needing a package
   manager).
 
-* [getmail](http://pyropus.ca/software/getmail/) - getmail is optional, but it
+* [getmail](https://pyropus.ca/software/getmail/) - getmail is optional, but it
   works well as a companion to email2pdf2. Install using `apt-get install
   getmail`.
 
@@ -40,19 +40,32 @@ instructions here are split out by platform:
   builddeb` to create a `.deb` package, then install it with `dpkg -i
   mydeb.deb`. This will prompt you regarding any missing dependencies.
 
+### Fedora/RHEL/CentOS
+
+* [wkhtmltopdf](https://wkhtmltopdf.org/) - Install using `dnf install wkhtmltopdf`.
+* Others - you may need to install system versions of some Python library
+  dependencies, or use a virtualenvironment. 
+  * For a virtualenvironment, create one using `python3 -m venv venv`, enable
+    it using `source venv/bin/activate` (works on most shells), and then install
+    requirements using `pip3 install -r requirements.txt`. You'll need the
+    virtualenvironment active when running the program (re-run `source`).
+  * If you don't want to use a virtualenvironment, run the above `pip3` command;
+    if it complains that it can't install a given dependency, you'll need to install
+    the system variant using `dnf install python3-depname`. 
+
 ### OS X
 
-* [wkhtmltopdf](http://wkhtmltopdf.org/) - Install the package from
+* [wkhtmltopdf](https://wkhtmltopdf.org/) - Install the package from
   http://wkhtmltopdf.org/downloads.html.
 
-* [getmail](http://pyropus.ca/software/getmail/) - TODO: This hasn't been
+* [getmail](https://pyropus.ca/software/getmail/) - TODO: This hasn't been
   tested, so there are no instructions here yet! Note that getmail is
   optional.
 
-* Install [Homebrew](http://brew.sh/)
+* Install [Homebrew](https://brew.sh/)
 
 * `xcode-select --install` (for lxml, because of
-  [this](http://stackoverflow.com/questions/19548011/cannot-install-lxml-on-mac-os-x-10-9))
+  [this](https://stackoverflow.com/questions/19548011/cannot-install-lxml-on-mac-os-x-10-9))
 
 * `brew install python3` (or otherwise make sure you have Python 3 and `pip3`
   available).
