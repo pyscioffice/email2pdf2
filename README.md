@@ -5,10 +5,10 @@
 email2pdf2 is a Python script to convert emails to PDF from the command-line.
 It is not interactive (it doesn't run from a browser or have a GUI), but is
 intended to be run as a [mail delivery
-agent](http://en.wikipedia.org/wiki/Mail_delivery_agent) - it won't retrieve
+agent](https://en.wikipedia.org/wiki/Mail_delivery_agent) - it won't retrieve
 emails for you, but it will take them from standard input as an MDA will and
 'deliver' them to PDF files. It is well-placed to use together with
-[getmail](http://pyropus.ca/software/getmail/), perhaps run on a schedule
+[getmail](https://pyropus.ca/software/getmail/), perhaps run on a schedule
 using [cron](https://en.wikipedia.org/wiki/Cron) or similar. You can also just
 use it as a standalone utility to convert a raw email (normally an
 [.eml](https://en.wikipedia.org/wiki/Email#Filename_extensions) file) to a
@@ -27,12 +27,12 @@ instructions here are split out by platform:
 
 ### Debian/Ubuntu
 
-* [wkhtmltopdf](http://wkhtmltopdf.org/) - Install the `.deb` from
+* [wkhtmltopdf](https://wkhtmltopdf.org/) - Install the `.deb` from
   http://wkhtmltopdf.org/ rather than using apt-get to minimise the
   dependencies you need to install (in particular, to avoid needing a package
   manager).
 
-* [getmail](http://pyropus.ca/software/getmail/) - getmail is optional, but it
+* [getmail](https://pyropus.ca/software/getmail/) - getmail is optional, but it
   works well as a companion to email2pdf2. Install using `apt-get install
   getmail`.
 
@@ -55,17 +55,17 @@ instructions here are split out by platform:
 
 ### OS X
 
-* [wkhtmltopdf](http://wkhtmltopdf.org/) - Install the package from
+* [wkhtmltopdf](https://wkhtmltopdf.org/) - Install the package from
   http://wkhtmltopdf.org/downloads.html.
 
-* [getmail](http://pyropus.ca/software/getmail/) - TODO: This hasn't been
+* [getmail](https://pyropus.ca/software/getmail/) - TODO: This hasn't been
   tested, so there are no instructions here yet! Note that getmail is
   optional.
 
-* Install [Homebrew](http://brew.sh/)
+* Install [Homebrew](https://brew.sh/)
 
 * `xcode-select --install` (for lxml, because of
-  [this](http://stackoverflow.com/questions/19548011/cannot-install-lxml-on-mac-os-x-10-9))
+  [this](https://stackoverflow.com/questions/19548011/cannot-install-lxml-on-mac-os-x-10-9))
 
 * `brew install python3` (or otherwise make sure you have Python 3 and `pip3`
   available).
