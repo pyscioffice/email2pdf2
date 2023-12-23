@@ -40,6 +40,19 @@ instructions here are split out by platform:
   builddeb` to create a `.deb` package, then install it with `dpkg -i
   mydeb.deb`. This will prompt you regarding any missing dependencies.
 
+### Fedora/RHEL/CentOS
+
+* [wkhtmltopdf](https://wkhtmltopdf.org/) - Install using `dnf install wkhtmltopdf`.
+* Others - you may need to install system versions of some Python library
+  dependencies, or use a virtualenvironment. 
+  * For a virtualenvironment, create one using `python3 -m venv venv`, enable
+    it using `source venv/bin/activate` (works on most shells), and then install
+    requirements using `pip3 install -r requirements.txt`. You'll need the
+    virtualenvironment active when running the program (re-run `source`).
+  * If you don't want to use a virtualenvironment, run the above `pip3` command;
+    if it complains that it can't install a given dependency, you'll need to install
+    the system variant using `dnf install python3-depname`. 
+
 ### OS X
 
 * [wkhtmltopdf](http://wkhtmltopdf.org/) - Install the package from
