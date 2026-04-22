@@ -1,4 +1,4 @@
-beautifulsoup4>=4.6.3
+beautifulsoup4>=4.14.3
 chardet
 coverage
 coveralls
